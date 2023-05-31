@@ -23,7 +23,7 @@ public class StringCalculatorImpl implements StringCalculator {
                 if (Integer.parseInt(s) >= 0) {
                     sum += Integer.parseInt(s);
                 } else {
-                    throw new NegativeNotAllowedException(s);
+                    throw new NegativeNotAllowedException("Negatives not allowed: " + s);
                 }
             }
             return sum;
@@ -36,7 +36,7 @@ public class StringCalculatorImpl implements StringCalculator {
             if (Integer.parseInt(s) >= 0) {
                 sum += Integer.parseInt(s);
             } else {
-                throw new NegativeNotAllowedException(s);
+                throw new NegativeNotAllowedException("Negatives not allowed: " + s);
             }
         }
         return sum;

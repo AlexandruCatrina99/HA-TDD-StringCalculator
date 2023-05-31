@@ -74,7 +74,7 @@ public class StringCalculatorTest {
         final NegativeNotAllowedException thrown = assertThrows(NegativeNotAllowedException.class, ()->{
             calculator.add("1,-2");
         });
-        assertEquals("-2",thrown.getMessage());
+        assertEquals("Negatives not allowed: -2",thrown.getMessage());
     }
 
 }
