@@ -1,3 +1,7 @@
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class Calculator {
 
     public static StringCalculator stringCalculator;
@@ -5,8 +9,39 @@ public class Calculator {
         Calculator.stringCalculator = stringCalculator;
     }
 
-    public static void main(String... args) {
+    public static void main(String... args) throws NegativeNotAllowedException {
         printWelcomeAndHelpText();
+
+        if (args.length != 0) {
+            for (String arg : args) {
+                if (isValidFormat(arg)) {
+                    String formattedInput =  arg.replace("scalc '", "").replace("'","");
+                    System.out.println("The result is " + stringCalculator.add(formattedInput));
+                } else {
+                    System.out.println("Invalid input, use format: scalc '//[delimiter]\\ninteger[delimiter]integer...'");
+                }
+            }
+    }else {
+            stringCalculator = new StringCalculatorImpl(new LoggerImpl());
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            while(!input.isEmpty()){
+                if (isValidFormat(input)){
+                    String formattedInput =  input.replace("scalc '", "").replace("'","");
+                    System.out.println("The result is " + stringCalculator.add(formattedInput));
+                }
+                else {
+                    System.out.println("Invalid input, use format: scalc '//[delimiter]\\ninteger[delimiter]integer...'");
+                }
+                input = scanner.nextLine();
+            }
+
+        }
+    }
+
+    public static boolean isValidFormat(String input) {
+        return Pattern.compile("^scalc '((\\/\\/[\\[].*\\]\\n.*)|([\\d,]+))'").matcher(input).find();
+
     }
 
     private static void printWelcomeAndHelpText() {
