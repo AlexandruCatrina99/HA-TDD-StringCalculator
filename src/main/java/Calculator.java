@@ -24,7 +24,7 @@ public class Calculator {
     }else {
             stringCalculator = new StringCalculatorImpl(new LoggerImpl());
             Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().replaceAll("\\\\n","\n");
             while(!input.isEmpty()){
                 if (isValidFormat(input)){
                     String formattedInput =  input.replace("scalc '", "").replace("'","");
@@ -33,14 +33,14 @@ public class Calculator {
                 else {
                     System.out.println("Invalid input, use format: scalc '//[delimiter]\\ninteger[delimiter]integer...'");
                 }
-                input = scanner.nextLine();
+                input = scanner.nextLine().replaceAll("\\\\n","\n");
             }
 
         }
     }
 
     public static boolean isValidFormat(String input) {
-        return Pattern.compile("^scalc '((\\/\\/[\\[].*\\]\\n.*)|([\\d,]+))'").matcher(input).find();
+        return Pattern.compile("^scalc '((\\/\\/[\\[].*\\]\\n.*)|([\\d,]+)|([\\d\\n]+))'").matcher(input).find();
 
     }
 
