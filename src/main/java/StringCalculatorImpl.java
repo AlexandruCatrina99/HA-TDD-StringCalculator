@@ -8,9 +8,9 @@ public class StringCalculatorImpl implements StringCalculator {
         if (input.isEmpty()){
             return 0;
         }
-        ArrayList<String> numbersAsString = new ArrayList<>(Arrays.asList(input.split(",")));
+        ArrayList<String> noNewLinesStrings = new ArrayList<>(Arrays.asList(input.split(",|\n")));
         int sum = 0;
-        for (String s:numbersAsString
+        for (String s:noNewLinesStrings
              ) {
             sum = sum + Integer.parseInt(s);
         }
