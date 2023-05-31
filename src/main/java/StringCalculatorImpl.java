@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class StringCalculatorImpl implements StringCalculator {
     @Override
@@ -17,7 +15,7 @@ public class StringCalculatorImpl implements StringCalculator {
             int sum = 0;
             for (String s : numberStringList
             ) {
-                if (s.isEmpty()){
+                if (s.isEmpty()) {
                     continue;
                 }
                 if (Integer.parseInt(s) >= 0) {
