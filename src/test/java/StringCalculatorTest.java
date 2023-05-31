@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
-    private StringCalculator calculator;
+    private StringCalculator calculator ;
 
     @BeforeEach
     public void beforeEach() {
-        calculator = new StringCalculatorImpl(new LoggerImpl());
+        this.calculator = new StringCalculatorImpl(new LoggerImpl());
     }
 
     @Test
-    public void testEmptyStringReturnsZero()throws NegativeNotAllowedException {
+    public void testEmptyStringReturnsZero() throws NegativeNotAllowedException {
         assertEquals(0, calculator.add(""));
     }
 
@@ -69,12 +69,13 @@ public class StringCalculatorTest {
     public void testStringWithCustomDelimiterAndOneNumberAndOneExtraDelimiter() throws NegativeNotAllowedException {
         assertEquals(12, calculator.add("//;\n12;"));
     }
+
     @Test
     public void testPassingNativeNumbers() {
-        final NegativeNotAllowedException thrown = assertThrows(NegativeNotAllowedException.class, ()->{
+        final NegativeNotAllowedException thrown = assertThrows(NegativeNotAllowedException.class, () -> {
             calculator.add("1,-2");
         });
-        assertEquals("Negatives not allowed: -2",thrown.getMessage());
+        assertEquals("Negatives not allowed: -2", thrown.getMessage());
     }
 
 }

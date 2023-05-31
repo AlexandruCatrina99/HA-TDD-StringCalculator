@@ -1,11 +1,11 @@
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
     public static StringCalculator stringCalculator;
-    public Calculator(final StringCalculator stringCalculator){
+
+    public Calculator(final StringCalculator stringCalculator) {
         Calculator.stringCalculator = stringCalculator;
     }
 
@@ -15,25 +15,24 @@ public class Calculator {
         if (args.length != 0) {
             for (String arg : args) {
                 if (isValidFormat(arg)) {
-                    String formattedInput =  arg.replace("scalc '", "").replace("'","");
+                    String formattedInput = arg.replace("scalc '", "").replace("'", "");
                     System.out.println("The result is " + stringCalculator.add(formattedInput));
                 } else {
                     System.out.println("Invalid input, use format: scalc '//[delimiter]\\ninteger[delimiter]integer...'");
                 }
             }
-    }else {
+        } else {
             stringCalculator = new StringCalculatorImpl(new LoggerImpl());
             Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine().replaceAll("\\\\n","\n");
-            while(!input.isEmpty()){
-                if (isValidFormat(input)){
-                    String formattedInput =  input.replace("scalc '", "").replace("'","");
+            String input = scanner.nextLine().replaceAll("\\\\n", "\n");
+            while (!input.isEmpty()) {
+                if (isValidFormat(input)) {
+                    String formattedInput = input.replace("scalc '", "").replace("'", "");
                     System.out.println("The result is " + stringCalculator.add(formattedInput));
-                }
-                else {
+                } else {
                     System.out.println("Invalid input, use format: scalc '//[delimiter]\\ninteger[delimiter]integer...'");
                 }
-                input = scanner.nextLine().replaceAll("\\\\n","\n");
+                input = scanner.nextLine().replaceAll("\\\\n", "\n");
             }
 
         }

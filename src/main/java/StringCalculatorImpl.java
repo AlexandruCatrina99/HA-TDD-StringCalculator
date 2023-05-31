@@ -9,6 +9,7 @@ public class StringCalculatorImpl implements StringCalculator {
     public StringCalculatorImpl(Logger logger) {
         this.logger = logger;
     }
+
     @Override
     public int add(String input) throws NegativeNotAllowedException {
         if (input.isEmpty()) {
@@ -19,9 +20,13 @@ public class StringCalculatorImpl implements StringCalculator {
             StringBuilder customDelimiter = new StringBuilder();
             int indexAfterDelimiter = input.indexOf("\n");
             String customDelimiters = input.substring(2, indexAfterDelimiter);
+            if (!customDelimiters.contains("[") && !customDelimiters.contains("]")){
+                customDelimiter.append(customDelimiters);
+                customDelimiter.append("|");
+            }
             Pattern p = Pattern.compile("\\[.*?\\]");
             Matcher m = p.matcher(customDelimiters);
-            while(m.find()){
+            while (m.find()) {
                 customDelimiter.append(m.group());
                 customDelimiter.append("|");
             }
@@ -35,7 +40,7 @@ public class StringCalculatorImpl implements StringCalculator {
                 if (Integer.parseInt(s) >= 0) {
                     int number = Integer.parseInt(s);
                     sum += number;
-                    if (number >= 1000){
+                    if (number >= 1000) {
                         logger.log(number);
                     }
                 } else {
@@ -52,7 +57,7 @@ public class StringCalculatorImpl implements StringCalculator {
             if (Integer.parseInt(s) >= 0) {
                 int number = Integer.parseInt(s);
                 sum += number;
-                if (number >= 1000){
+                if (number >= 1000) {
                     logger.log(number);
                 }
             } else {

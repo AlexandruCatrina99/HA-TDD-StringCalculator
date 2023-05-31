@@ -7,12 +7,10 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
-import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MainCalculatorTest {
-    private StringCalculator calculator;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errorContent = new ByteArrayOutputStream();
     private final PrintStream outputStream = System.out;
@@ -21,7 +19,6 @@ public class MainCalculatorTest {
 
     @BeforeEach
     public void beforeEach() {
-        this.calculator = new StringCalculatorImpl(new LoggerImpl());
         Calculator.stringCalculator = new StringCalculatorImpl(new LoggerImpl());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errorContent));
