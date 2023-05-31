@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class StringCalculatorTest {
 
     private StringCalculator calculator;
@@ -13,6 +15,14 @@ public class StringCalculatorTest {
 
     @Test
     public void testEmptyStringReturnsZero() {
-        Assertions.assertEquals(0, calculator.add(""));
+        assertEquals(0, calculator.add(""));
+    }
+    @Test
+    public void testStringWithOneNumber() {
+        assertEquals(1, calculator.add("1"));
+    }
+    @Test
+    public void testStringWithTwoNumber() {
+        assertEquals(3, calculator.add("1,2"));
     }
 }
