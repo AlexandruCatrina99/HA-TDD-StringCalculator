@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StringCalculatorImpl implements StringCalculator {
+    private final Logger logger;
+
+    public StringCalculatorImpl(Logger logger) {
+        this.logger = logger;
+    }
     @Override
     public int add(String input) throws NegativeNotAllowedException {
         if (input.isEmpty()) {
