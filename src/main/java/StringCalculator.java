@@ -1,3 +1,3 @@
 public interface StringCalculator {
-    int add(String input);
+    int add(String input) throws NegativeNotAllowedException;
 }
